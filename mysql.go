@@ -19,7 +19,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
     defer db.Close()
 
     // Execute the query
-    rows, err := db.Query("SELECT * FROM genericsms where mobile = " + mobileNo + ";")
+    rows, err := db.Query("SELECT id, message_text FROM genericsms where mobile = " + mobileNo + " order by id desc limit 1;")
     if err != nil {
         panic(err.Error()) // proper error handling instead of panic in your app
     }
